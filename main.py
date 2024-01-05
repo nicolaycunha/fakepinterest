@@ -21,4 +21,4 @@ from FakePinterest import app # isso aqui está dizendo pegue do arquivo __init_
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
