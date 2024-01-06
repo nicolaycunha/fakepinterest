@@ -6,6 +6,3 @@
 * O código é todo escrito em Python, html e css
 
 
-
-
-# fakepinterest
