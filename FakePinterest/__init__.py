@@ -13,6 +13,11 @@ import os
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DATABASE_URL') # "sqlite:///comunidade.db" # aqui estamos configurando uma variável para criar o banco de dados
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://banco_pindonico_wjgk_user:V7KxfD6b4PTSpw7RylgYYvHW3d2b4h9g@dpg-cmcmrm021fec73csfhag-a.oregon-postgres.render.com/banco_pindonico_wjgk"
+# no código acima eu conecto meu banco de dados com uma variável externa, no caso meu computador,
+# com isso eu posso criar as tabelas necessárias para o banco de dados on-line. Farei somente uma vez, depoius usarei
+# a variável de ambiente interna do render.dashboard
+
 app.config['SECRET_KEY'] = "d611d7bf378879caedb5053790338fb0" # gerado com secrets.toke_hex(16)
 app.config['UPLOAD_FOLDER'] = "static/fotos_posts"
 database = SQLAlchemy(app) # para criar o banco de dados

@@ -25,7 +25,7 @@ def homepage():
     formlogin = FormLogin() # aqui estamos criando um link entre os formulários de login e a homepage
     if formlogin.validate_on_submit(): # validando o login
         usuario = Usuario.query.filter_by(email = formlogin.email.data).first() # aqui buscamos no banco de dados
-        if usuario and bcrypt.check_password_hash(usuario.senha, formlogin.senha.data):
+        if usuario and bcrypt.check_password_hash(usuario.senha.encode('utf-8'), formlogin.senha.data):
             login_user(usuario)
             return redirect(url_for("perfil", id_usuario = usuario.id))
     return render_template("homepage.html", form = formlogin)
@@ -36,7 +36,7 @@ def homepage():
 def criar_conta():
     formcriarconta = FormCriarConta()
     if formcriarconta.validate_on_submit(): # isso aqui só vai rodar se o usuario clicou em submeter a conta
-        senha = bcrypt.generate_password_hash(formcriarconta.senha.data) # aqui estamos criptografando a senha, para que seja armazenada no banco algo criptografado
+        senha = bcrypt.generate_password_hash(formcriarconta.senha.data).decode('utf-8') # aqui estamos criptografando a senha, para que seja armazenada no banco algo criptografado
         usuario = Usuario(username = formcriarconta.username.data,
                           email = formcriarconta.email.data,
                           senha = senha)
